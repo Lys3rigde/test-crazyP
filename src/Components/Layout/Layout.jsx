@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Pagination } from '../Pagination/Pagination';
 import { Search } from '../Search/Search';
 import { Table } from '../Table/Table';
-import data from '../../data.json'
+import data from '../../data.json' //использование данных напрямую, без API, из-за проблем с CORS
 import './Layout.css';
 
 
@@ -37,19 +37,19 @@ export const Layout = () => {
     setIsLoaded(true);
   }, [])
 
-  const currentPage = page => {
+  const currentPage = page => { //функция устанавливает нынешнюю страницу для пагинации 
     setCurPage(page);
     setIsBtnPrevDisabled('');
     setIsBtnNextDisabled('');
     setCurPageActive('active');
   }
 
-  let pages = [];
+  let pages = []; //массив всех страниц для пагинации
   for (let i = 1; i <= totalPages; i++) {
     pages.push(i);
   }
 
-  const onNextPage = () => {
+  const onNextPage = () => { //переход на страницу вперед по кнопке Next
     if (curPage > totalPages - 1) {
       setIsBtnNextDisabled('disabled');
       return;
@@ -58,7 +58,7 @@ export const Layout = () => {
     setIsBtnPrevDisabled('')
   }
 
-  const onPrevPage = () => {
+  const onPrevPage = () => { //переход на страницу вперед по кнопке Next
     if (curPage < 2) {
       setIsBtnPrevDisabled('disabled');
       return;
@@ -67,7 +67,7 @@ export const Layout = () => {
     setIsBtnNextDisabled('')
   }
 
-  const sortData = target => {
+  const sortData = target => { // функция сортировки данных по клику на заголовок столбца
     const copyInfo = info.concat();
     let sortInfo;
     if (sortDirection) {
@@ -85,11 +85,11 @@ export const Layout = () => {
     setSortDirection(!sortDirection);
   }
 
-  const searchValue = e => {
+  const searchValue = e => { //функция записывает значение в state из инпута
     setSrchValue(e.target.value.toLowerCase());
   }
 
-  const getFilteredData = () => {
+  const getFilteredData = () => { // функция фильтрации строк по значению из инпута
     if (!srchValue) {
       return info
     }
@@ -114,7 +114,7 @@ export const Layout = () => {
     setTotalPages(getTotalPages);
   }, [isLoaded, info.length, filteredData]);
 
-  const currStrs = filteredData.slice(firstStr, lastStr);
+  const currStrs = filteredData.slice(firstStr, lastStr); // вычисление строк, которые должны отрисовывать на определенной странице
 
   return (
     <div className="Layout">
