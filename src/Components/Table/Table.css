@@ -1,0 +1,25 @@
+.Table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-head { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.table-head__info {
+  padding: 20px; 
+  font-weight: bold;
+  font-size: 16px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-head__info:hover {
+  background-color: #eee;
+}
