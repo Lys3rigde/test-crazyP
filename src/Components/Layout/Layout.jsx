@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { Pagination } from '../Pagination/Pagination';
 import { Search } from '../Search/Search';
 import { Table } from '../Table/Table';
+import data from '../../data.json'
 import './Layout.css';
 
 
 export const Layout = () => {
 
   const [info, setInfo] = useState([]);
-  const API = 'http://www.filltext.com/?rows=231&id={number|200}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}'
+  // const API = 'http://www.filltext.com/?rows=231&id={number|200}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}'
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
@@ -24,13 +25,16 @@ export const Layout = () => {
   const firstStr = lastStr - maxStrs;
 
   useEffect(() => {
-    fetch(API)
-      .then(response => response.json())
-      .then(data => {
-        setInfo(data);
-        setIsLoading(false);
-        setIsLoaded(true);
-      })
+    // fetch(API)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setInfo(data);
+    //     setIsLoading(false);
+    //     setIsLoaded(true);
+    //   })
+    setInfo(data);
+    setIsLoading(false);
+    setIsLoaded(true);
   }, [])
 
   const currentPage = page => {
